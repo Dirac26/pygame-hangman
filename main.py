@@ -3,6 +3,10 @@ from surfaces.window import draw_word, update_window, WIN
 from surfaces.images import load_images
 from hangman import Hangman
 from word import Word
+from time import sleep
+
+win_sound = pygame.mixer.Sound('assets/win-sound.mp3')
+lose_sound = pygame.mixer.Sound('assets/burning-memories.mp3')
 
 clock = pygame.time.Clock()
 
@@ -28,10 +32,14 @@ while run:
 
     if word.is_guessed():
         print("You won!")
+        win_sound.play()
+        sleep(2)
         run = False
     
     elif hangman.is_lost():
         print("You lost!")
+        lose_sound.play()
+        sleep(5)
         run = False
 
 pygame.quit()
